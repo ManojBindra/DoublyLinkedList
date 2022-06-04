@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Node<T>{
     private T value;
     private Node<T> prev;
@@ -37,6 +39,18 @@ public class Node<T>{
     public String toString() {
         return "{" +
             " value='" + getValue() + "'" + "}";
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Node)) {
+            return false;
+        }
+        Node<T> node = (Node<T>) o;
+        return Objects.equals(value, node.value);
     }
 
 

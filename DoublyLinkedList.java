@@ -67,6 +67,44 @@ public class DoublyLinkedList<T> implements DoublyLinkedListInterface<T> {
         this.size++;
         return newNode;
     }
+
+    @Override
+    public Node<T> delete(T value){
+        Node<T> delNode = search(value);
+        if(delNode == null)
+            return null;
+        if(delNode == this.tail){
+            this.tail = delNode.getPrev();
+            this.tail.setNext(null);
+        }
+        else if(delNode == this.head){
+            this.head = delNode.getNext();
+            this.head.setPrev(null);
+        }else{
+            Node<T> temp = delNode.getPrev();
+            delNode.getPrev().setNext(delNode.getNext());
+            delNode.getNext().setPrev(temp);
+        }
+        return delNode;
+    }
+
+    @Override
+    public Node<T> search(T value){
+        Node<T> newNode = new Node<>(value);
+        Node<T> head = this.head;
+        while(head != null){
+            if(head.equals(newNode))
+                return head;
+            head = head.getNext();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean contains(T value){
+        Node<T> searchItem = search(value);
+        return !(searchItem == null); 
+    }
     
     @Override
     public void printList(){

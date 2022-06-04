@@ -5,8 +5,8 @@ public interface DoublyLinkedListInterface<T> {
     Node<T> push(T value);
     // boolean contains(T value);
     Node<T> append(T value);
-    // Node<T> insertAfter(Node<T> node, T value);
-    // Node<T> insertBefore(Node<T> node, T value);
+    Node<T> insertAfter(Node<T> node, T value);
+    Node<T> insertBefore(Node<T> node, T value);
     // Node<T> delete(T value);
     // Node<T> search(T value);
     void printList();

@@ -41,6 +41,32 @@ public class DoublyLinkedList<T> implements DoublyLinkedListInterface<T> {
         this.size++;
         return this.tail;
     }
+
+    @Override
+    public Node<T> insertAfter(Node<T> prevNode, T value){
+        if(prevNode == this.tail)
+            return(append(value));
+        Node<T> newNode = new Node<>(value);
+        newNode.setNext(prevNode.getNext());
+        prevNode.setNext(newNode);
+        newNode.setPrev(prevNode);
+        newNode.getNext().setPrev(newNode);
+        this.size++;
+        return newNode;
+    }
+
+    @Override
+    public Node<T> insertBefore(Node<T> nextNode, T value){
+        if(nextNode == this.head)
+            return push(value);
+        Node<T> newNode = new Node<>(value);
+        newNode.setPrev(nextNode.getPrev());
+        newNode.setNext(nextNode);
+        nextNode.setPrev(newNode);
+        newNode.getPrev().setNext(newNode); 
+        this.size++;
+        return newNode;
+    }
     
     @Override
     public void printList(){
